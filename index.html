@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>公司飲料訂購</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#4A90E2"/>
+</head>
+<body>
+
+    <header>
+        <h1>公司飲料訂購</h1>
+        <p id="order-starter-info"></p>
+    </header>
+
+    <main>
+        <section id="starter-section">
+            <h2>發起新訂單</h2>
+            <form id="starter-form">
+                <input type="text" id="starter-name" placeholder="您的姓名 (開團人)" required>
+                <input type="url" id="menu-url" placeholder="請貼上菜單圖片網址" required>
+                <button type="submit">開始揪團！</button>
+            </form>
+        </section>
+
+        <section id="joiner-section" class="hidden">
+            <div id="menu-display"></div>
+            
+            <h2>我要點餐</h2>
+            <form id="joiner-form">
+                <input type="text" id="joiner-name" placeholder="您的姓名" required>
+                <input type="text" id="drink-name" placeholder="飲料品項" required>
+                <input type="number" id="drink-price" placeholder="金額" required>
+                <input type="text" id="drink-sugar" placeholder="甜度 (例如: 少糖)" required>
+                <input type="text" id="drink-ice" placeholder="冰塊 (例如: 去冰)" required>
+                <button type="submit">加入訂單</button>
+            </form>
+
+            <div class="actions">
+                <button id="export-store-btn">匯出店家用清單</button>
+                <button id="export-pickup-btn">匯出取餐用清單</button>
+                <button id="reset-order-btn" class="danger">重設訂單 (清空)</button>
+            </div>
+        </section>
+
+        <section id="output-section"></section>
+
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(reg => console.log('Service Worker: Registered'))
+                    .catch(err => console.log(`Service Worker: Error: ${err}`));
+            });
+        }
+    </script>
+</body>
+</html>

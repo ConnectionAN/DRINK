@@ -1,0 +1,21 @@
+{
+  "name": "公司飲料訂購系統",
+  "short_name": "訂飲料",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#f4f7f6",
+  "theme_color": "#4A90E2",
+  "description": "一個簡單的公司內部飲料訂購PWA應用程式",
+  "icons": [
+    {
+      "src": "icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
