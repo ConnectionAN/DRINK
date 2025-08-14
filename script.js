@@ -38,21 +38,44 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 開始新訂單
-    starterForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const starterName = document.getElementById('starter-name').value;
-        const menuUrl = document.getElementById('menu-url').value;
-        
-        orderData = {
-            starterName: starterName,
-            menuUrl: menuUrl,
-            orders: []
+   // --- 請用這個新版本，替換掉整個 starterForm.addEventListener 區塊 ---
+
+starterForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const starterName = document.getElementById('starter-name').value;
+    const fileInput = document.getElementById('menu-uploader');
+
+    // 檢查使用者是否真的有選擇檔案
+    if (fileInput.files.length > 0) {
+        const file = fileInput.files[0]; // 獲取被選擇的第一個檔案
+        const reader = new FileReader(); // 建立一個檔案讀取器
+
+        // 這是最重要的部分：定義當檔案成功讀取完成後，要做什麼事
+        reader.onload = (event) => {
+            // event.target.result 裡面會是圖片的 Base64 Data URL
+            const menuDataUrl = event.target.result;
+            
+            // 將圖片資料和其他開團資訊一起打包
+            orderData = {
+                starterName: starterName,
+                menuUrl: menuDataUrl, // 注意：這裡現在存的是 Base64 資料，而不是網址
+                orders: []
+            };
+            
+            // 存檔並更新畫面 (這兩步和之前一樣)
+            saveState();
+            render();
+            starterForm.reset();
         };
-        
-        saveState();
-        render();
-        starterForm.reset();
-    });
+
+        // **啟動**檔案讀取器，並告訴它將檔案讀取為 Data URL 格式
+        reader.readAsDataURL(file);
+
+    } else {
+        alert('請選擇要上傳的菜單圖片！');
+    }
+});
+
 
     // 加入一筆訂單
     joinerForm.addEventListener('submit', (e) => {
@@ -136,4 +159,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Initial Load ---
     render();
+
 });
