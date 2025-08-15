@@ -49,8 +49,10 @@
 
     </main>
 
-    <script src="script.js"></script>
+   <script src="script.js" type="module"></script>
+    
     <script>
+        // service worker 註冊碼維持不變
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('/service-worker.js')
@@ -61,3 +63,4 @@
     </script>
 </body>
 </html>
+
