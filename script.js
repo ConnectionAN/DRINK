@@ -38,9 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 開始新訂單
-   // --- 請用這個新版本，替換掉整個 starterForm.addEventListener 區塊 ---
-
-starterForm.addEventListener('submit', (e) => {
+    starterForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const starterName = document.getElementById('starter-name').value;
     const fileInput = document.getElementById('menu-uploader');
@@ -75,7 +73,6 @@ starterForm.addEventListener('submit', (e) => {
         alert('請選擇要上傳的菜單圖片！');
     }
 });
-
 
     // 加入一筆訂單
     joinerForm.addEventListener('submit', (e) => {
@@ -159,5 +156,4 @@ starterForm.addEventListener('submit', (e) => {
 
     // --- Initial Load ---
     render();
-
 });
